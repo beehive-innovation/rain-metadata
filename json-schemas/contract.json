@@ -52,11 +52,14 @@
         "chainId": {
           "type": "number"
         },
-        "address": {
-          "type": "string"
+        "knownAddresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "required": ["chainId", "address"],
+      "required": ["chainId", "knownAddresses"],
       "additionalProperties": false,
       "description": "The address of the deployed contract for the specified chain."
     },

@@ -26,7 +26,7 @@ export type Version = {
  */
 export type EVMAddress = {
     chainId: number
-    address: string
+    knownAddresses: string[]
 }
 
 /*
