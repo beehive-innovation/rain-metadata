@@ -38,7 +38,7 @@ export type Expression = {
     name: string
     description: string
     path: string
-    contextColumns: ContextColumn[]
+    contextColumns?: ContextColumn[]
 }
 
 /*

@@ -88,7 +88,7 @@
           }
         }
       },
-      "required": ["name", "description", "path", "contextColumns"],
+      "required": ["name", "description", "path"],
       "additionalProperties": false
     },
     "ContextColumn": {
