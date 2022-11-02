@@ -1,86 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$ref": "#/definitions/ContractMetadata",
+    "$ref": "#/definitions/ExpressionMetadata",
     "definitions": {
-        "ContractMetadata": {
-            "type": "object",
-            "properties": {
-                "addresses": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/EVMAddress"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "commit": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "expressions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ExpressionMetadata"
-                    }
-                },
-                "contextColumns": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ContextColumn"
-                    }
-                },
-                "inputs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Input"
-                    }
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                }
-            },
-            "required": [
-                "addresses",
-                "name",
-                "source",
-                "commit",
-                "description",
-                "type",
-                "contextColumns",
-                "version"
-            ],
-            "additionalProperties": false,
-            "title": "Rain Contract Metadata",
-            "description": "Schema for a contract"
-        },
-        "EVMAddress": {
-            "type": "object",
-            "properties": {
-                "chainId": {
-                    "type": "number"
-                },
-                "knownAddresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "chainId",
-                "knownAddresses"
-            ],
-            "additionalProperties": false
-        },
         "ExpressionMetadata": {
             "type": "object",
             "properties": {
@@ -268,6 +189,25 @@
             "title": "Rain Interpreter Metadata",
             "description": "Schema for an expression"
         },
+        "EVMAddress": {
+            "type": "object",
+            "properties": {
+                "chainId": {
+                    "type": "number"
+                },
+                "knownAddresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "chainId",
+                "knownAddresses"
+            ],
+            "additionalProperties": false
+        },
         "WordPackMetadata": {
             "type": "object",
             "properties": {
@@ -368,62 +308,6 @@
                 "outputs",
                 "isZeroOperand",
                 "category"
-            ],
-            "additionalProperties": false
-        },
-        "ContextColumn": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "cells": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ContextCell"
-                    }
-                }
-            },
-            "required": [
-                "name"
-            ],
-            "additionalProperties": false
-        },
-        "ContextCell": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name"
-            ],
-            "additionalProperties": false
-        },
-        "Input": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "path": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "description",
-                "path"
             ],
             "additionalProperties": false
         }
