@@ -1,431 +1,400 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$ref": "#/definitions/ContractMetadata",
-    "definitions": {
-        "ContractMetadata": {
-            "type": "object",
-            "properties": {
-                "addresses": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/EVMAddress"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "source": {
-                    "type": "string"
-                },
-                "commit": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "expressions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ExpressionMetadata"
-                    }
-                },
-                "contextColumns": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ContextColumn"
-                    }
-                },
-                "inputs": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Input"
-                    }
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                }
-            },
-            "required": [
-                "addresses",
-                "name",
-                "source",
-                "commit",
-                "description",
-                "type",
-                "contextColumns",
-                "version"
-            ],
-            "additionalProperties": false,
-            "title": "Rain Contract Metadata",
-            "description": "Schema for a contract"
-        },
-        "EVMAddress": {
-            "type": "object",
-            "properties": {
-                "chainId": {
-                    "type": "number"
-                },
-                "knownAddresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "chainId",
-                "knownAddresses"
-            ],
-            "additionalProperties": false
-        },
-        "ExpressionMetadata": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "commit": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "content": {
-                    "type": "string"
-                },
-                "path": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                },
-                "author": {
-                    "type": "string"
-                },
-                "bytes": {
-                    "$ref": "#/definitions/StateConfig"
-                },
-                "interpreter": {
-                    "$ref": "#/definitions/InterpreterMetadata"
-                }
-            },
-            "required": [
-                "name",
-                "commit",
-                "description",
-                "content",
-                "path",
-                "version"
-            ],
-            "additionalProperties": false,
-            "title": "Rain Exprression Metadata",
-            "description": "Schema for an expression"
-        },
-        "Version": {
-            "type": "object",
-            "properties": {
-                "major": {
-                    "type": "number"
-                },
-                "minor": {
-                    "type": "number"
-                },
-                "release": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "major",
-                "minor",
-                "release"
-            ],
-            "additionalProperties": false
-        },
-        "StateConfig": {
-            "type": "object",
-            "properties": {
-                "constants": {
-                    "type": "array",
-                    "items": {
-                        "type": [
-                            "string",
-                            "number"
-                        ]
-                    }
-                },
-                "sources": {
-                    "type": "array",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "BYTES_PER_ELEMENT": {
-                                        "type": "number"
-                                    },
-                                    "buffer": {
-                                        "type": "object",
-                                        "properties": {
-                                            "byteLength": {
-                                                "type": "number"
-                                            }
-                                        },
-                                        "required": [
-                                            "byteLength"
-                                        ],
-                                        "additionalProperties": false
-                                    },
-                                    "byteLength": {
-                                        "type": "number"
-                                    },
-                                    "byteOffset": {
-                                        "type": "number"
-                                    },
-                                    "length": {
-                                        "type": "number"
-                                    }
-                                },
-                                "required": [
-                                    "BYTES_PER_ELEMENT",
-                                    "buffer",
-                                    "byteLength",
-                                    "byteOffset",
-                                    "length"
-                                ],
-                                "additionalProperties": {
-                                    "type": "number"
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "required": [
-                "constants",
-                "sources"
-            ],
-            "additionalProperties": false
-        },
-        "InterpreterMetadata": {
-            "type": "object",
-            "properties": {
-                "address": {
-                    "$ref": "#/definitions/EVMAddress"
-                },
-                "integrityAddress": {
-                    "$ref": "#/definitions/EVMAddress"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "commit": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "wordpack": {
-                    "$ref": "#/definitions/WordPackMetadata"
-                },
-                "opmeta": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/OpMeta"
-                    }
-                },
-                "storageLength": {
-                    "type": "number"
-                },
-                "path": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                },
-                "author": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "address",
-                "integrityAddress",
-                "name",
-                "commit",
-                "description",
-                "wordpack",
-                "opmeta",
-                "storageLength",
-                "path",
-                "version"
-            ],
-            "additionalProperties": false,
-            "title": "Rain Interpreter Metadata",
-            "description": "Schema for an expression"
-        },
-        "WordPackMetadata": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "commit": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "words": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Word"
-                    }
-                },
-                "path": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                },
-                "author": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "commit",
-                "description",
-                "words",
-                "path",
-                "version"
-            ],
-            "additionalProperties": false,
-            "title": "Rain WordPack Metadata",
-            "description": "Schema for an expression"
-        },
-        "Word": {
-            "type": "object",
-            "properties": {
-                "word": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "aliases": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "word",
-                "description"
-            ],
-            "additionalProperties": false
-        },
-        "OpMeta": {
-            "type": "object",
-            "properties": {
-                "enum": {
-                    "type": "number"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "word": {
-                    "$ref": "#/definitions/Word"
-                },
-                "inputs": {
-                    "type": "number"
-                },
-                "outputs": {
-                    "type": "number"
-                },
-                "isZeroOperand": {
-                    "type": "boolean"
-                },
-                "category": {
-                    "type": "string"
-                },
-                "data": {}
-            },
-            "required": [
-                "enum",
-                "name",
-                "description",
-                "word",
-                "inputs",
-                "outputs",
-                "isZeroOperand",
-                "category"
-            ],
-            "additionalProperties": false
-        },
-        "ContextColumn": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "cells": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ContextCell"
-                    }
-                }
-            },
-            "required": [
-                "name"
-            ],
-            "additionalProperties": false
-        },
-        "ContextCell": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name"
-            ],
-            "additionalProperties": false
-        },
-        "Input": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "path": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "description",
-                "path"
-            ],
-            "additionalProperties": false
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/EVMAddress"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "commit": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "expressions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ExpressionMetadata"
+      }
+    },
+    "contextColumns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContextColumn"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Input"
+      }
+    },
+    "version": {
+      "$ref": "#/definitions/Version"
     }
+  },
+  "required": [
+    "addresses",
+    "name",
+    "source",
+    "commit",
+    "description",
+    "type",
+    "contextColumns",
+    "version"
+  ],
+  "additionalProperties": false,
+  "title": "Rain Contract Metadata",
+  "description": "Schema for a contract",
+  "definitions": {
+    "EVMAddress": {
+      "type": "object",
+      "properties": {
+        "chainId": {
+          "type": "number"
+        },
+        "knownAddresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["chainId", "knownAddresses"],
+      "additionalProperties": false,
+      "description": "The address of the deployed contract for the specified chain."
+    },
+    "ExpressionMetadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/definitions/Version"
+        },
+        "author": {
+          "type": "string"
+        },
+        "bytes": {
+          "$ref": "#/definitions/StateConfig"
+        },
+        "interpreter": {
+          "$ref": "#/definitions/InterpreterMetadata"
+        }
+      },
+      "required": [
+        "name",
+        "commit",
+        "description",
+        "content",
+        "path",
+        "version"
+      ],
+      "additionalProperties": false,
+      "title": "Rain Exprression Metadata",
+      "description": "Schema for an expression"
+    },
+    "Version": {
+      "type": "object",
+      "properties": {
+        "major": {
+          "type": "number"
+        },
+        "minor": {
+          "type": "number"
+        },
+        "release": {
+          "type": "string"
+        }
+      },
+      "required": ["major", "minor", "release"],
+      "additionalProperties": false,
+      "description": "Version of this metadata"
+    },
+    "StateConfig": {
+      "type": "object",
+      "properties": {
+        "constants": {
+          "type": "array",
+          "items": {
+            "type": ["string", "number"]
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "BYTES_PER_ELEMENT": {
+                    "type": "number"
+                  },
+                  "buffer": {
+                    "type": "object",
+                    "properties": {
+                      "byteLength": {
+                        "type": "number"
+                      }
+                    },
+                    "required": ["byteLength"],
+                    "additionalProperties": false
+                  },
+                  "byteLength": {
+                    "type": "number"
+                  },
+                  "byteOffset": {
+                    "type": "number"
+                  },
+                  "length": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "BYTES_PER_ELEMENT",
+                  "buffer",
+                  "byteLength",
+                  "byteOffset",
+                  "length"
+                ],
+                "additionalProperties": {
+                  "type": "number"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "required": ["constants", "sources"],
+      "additionalProperties": false,
+      "description": "Expression bytes aka StateConfig"
+    },
+    "InterpreterMetadata": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/EVMAddress"
+        },
+        "integrityAddress": {
+          "$ref": "#/definitions/EVMAddress"
+        },
+        "name": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "wordpack": {
+          "$ref": "#/definitions/WordPackMetadata"
+        },
+        "opmeta": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OpMeta"
+          }
+        },
+        "storageLength": {
+          "type": "number"
+        },
+        "path": {
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/definitions/Version"
+        },
+        "author": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "address",
+        "integrityAddress",
+        "name",
+        "commit",
+        "description",
+        "wordpack",
+        "opmeta",
+        "storageLength",
+        "path",
+        "version"
+      ],
+      "additionalProperties": false,
+      "title": "Rain Interpreter Metadata",
+      "description": "Schema for an expression"
+    },
+    "WordPackMetadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Word"
+          }
+        },
+        "path": {
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/definitions/Version"
+        },
+        "author": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "commit", "description", "words", "path", "version"],
+      "additionalProperties": false,
+      "title": "Rain WordPack Metadata",
+      "description": "Schema for an expression"
+    },
+    "Word": {
+      "type": "object",
+      "properties": {
+        "word": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["word", "description"],
+      "additionalProperties": false,
+      "description": "Information about a single word"
+    },
+    "OpMeta": {
+      "type": "object",
+      "properties": {
+        "enum": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "word": {
+          "$ref": "#/definitions/Word"
+        },
+        "inputs": {
+          "type": "number"
+        },
+        "outputs": {
+          "type": "number"
+        },
+        "isZeroOperand": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string"
+        },
+        "data": {}
+      },
+      "required": [
+        "enum",
+        "name",
+        "description",
+        "word",
+        "inputs",
+        "outputs",
+        "isZeroOperand",
+        "category"
+      ],
+      "additionalProperties": false,
+      "description": "Informatopn about opcodes"
+    },
+    "ContextColumn": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "cells": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContextCell"
+          }
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "ContextCell": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": false
+    },
+    "Input": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "path"],
+      "additionalProperties": false
+    }
+  }
 }

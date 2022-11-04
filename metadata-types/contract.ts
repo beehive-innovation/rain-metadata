@@ -41,6 +41,6 @@ export type ContextCell = {
  */
 export type Input = {
     name: string
-    description: string
+    description?: string
     path: string
 }
