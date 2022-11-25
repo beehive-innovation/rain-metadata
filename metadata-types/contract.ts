@@ -1,5 +1,4 @@
 import { EVMAddress, Version } from "./general";
-import { ExpressionMetadata } from "./expression";
 
 /**
  * @title Rain Contract Metadata
@@ -13,10 +12,21 @@ export type ContractMetadata = {
     commit: string
     description: string
     type: string
-    expressions?: ExpressionMetadata[]
+    expressions?: Expression[]
     contextColumns: ContextColumn[]
     inputs?: Input[]
     version: Version
+}
+
+/*
+* Additional information about expressions (StateConfig) in this ABI.
+*/
+export type Expression = {
+    name: string
+    description: string
+    path: string
+    examples: string[]
+    contextColumns?: ContextColumn[]
 }
 
 /*
