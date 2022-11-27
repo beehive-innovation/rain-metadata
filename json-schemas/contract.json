@@ -17,6 +17,9 @@
     "commit": {
       "type": "string"
     },
+    "bytecodeHash": {
+      "type": "string"
+    },
     "description": {
       "type": "string"
     },
@@ -29,12 +32,6 @@
         "$ref": "#/definitions/Expression"
       }
     },
-    "contextColumns": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ContextColumn"
-      }
-    },
     "inputs": {
       "type": "array",
       "items": {
@@ -43,6 +40,9 @@
     },
     "version": {
       "$ref": "#/definitions/Version"
+    },
+    "interpreterFields": {
+      "$ref": "#/definitions/InterpreterFields"
     }
   },
   "required": [
@@ -50,9 +50,9 @@
     "name",
     "source",
     "commit",
+    "bytecodeHash",
     "description",
     "type",
-    "contextColumns",
     "version"
   ],
   "additionalProperties": false,
@@ -129,11 +129,14 @@
         "name": {
           "type": "string"
         },
+        "alias": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         }
       },
-      "required": ["name"],
+      "required": ["name", "alias", "description"],
       "additionalProperties": false
     },
     "Input": {
@@ -168,6 +171,19 @@
       "required": ["major", "minor", "release"],
       "additionalProperties": false,
       "description": "Version of this metadata"
+    },
+    "InterpreterFields": {
+      "type": "object",
+      "properties": {
+        "interpreterFieldPath": {
+          "type": "string"
+        },
+        "deployerFieldPath": {
+          "type": "string"
+        }
+      },
+      "required": ["interpreterFieldPath", "deployerFieldPath"],
+      "additionalProperties": false
     }
   }
 }

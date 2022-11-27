@@ -1,14 +1,13 @@
-import { EVMAddress, Version } from "./general"
+import { Version } from "./general"
 import { Word, WordPackMetadata } from "./wordpack"
 
 /**
  * @title Rain Interpreter Metadata
- * @description Schema for an expression
+ * @description Schema for an interpreter
  * @version 0.01
  */
 export type InterpreterMetadata = {
-    address: EVMAddress
-    integrityAddress: EVMAddress
+    addresses: InterpreterEVMAddresses[]
     name: string
     commit: string
     description: string
@@ -20,8 +19,19 @@ export type InterpreterMetadata = {
     author?: string
 }
 
+export type InterpreterEVMAddresses = {
+    chainId: number
+    knownAddresses: InterpreterChainEVMAddresses
+}
+
+export type InterpreterChainEVMAddresses = {
+    interpreter: string
+    integrity: string
+    deployer: string
+}
+
 /**
- * Informatopn about opcodes
+ * Information about opcodes
  */
 export type OpMeta = {
     enum: number

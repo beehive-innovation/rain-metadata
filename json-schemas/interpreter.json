@@ -1,204 +1,199 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$ref": "#/definitions/InterpreterMetadata",
-    "definitions": {
-        "InterpreterMetadata": {
-            "type": "object",
-            "properties": {
-                "address": {
-                    "$ref": "#/definitions/EVMAddress"
-                },
-                "integrityAddress": {
-                    "$ref": "#/definitions/EVMAddress"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "commit": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "wordpack": {
-                    "$ref": "#/definitions/WordPackMetadata"
-                },
-                "opmeta": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/OpMeta"
-                    }
-                },
-                "storageLength": {
-                    "type": "number"
-                },
-                "path": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                },
-                "author": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "address",
-                "integrityAddress",
-                "name",
-                "commit",
-                "description",
-                "wordpack",
-                "opmeta",
-                "storageLength",
-                "path",
-                "version"
-            ],
-            "additionalProperties": false,
-            "title": "Rain Interpreter Metadata",
-            "description": "Schema for an expression"
-        },
-        "EVMAddress": {
-            "type": "object",
-            "properties": {
-                "chainId": {
-                    "type": "number"
-                },
-                "knownAddresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "chainId",
-                "knownAddresses"
-            ],
-            "additionalProperties": false
-        },
-        "WordPackMetadata": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "commit": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "words": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Word"
-                    }
-                },
-                "path": {
-                    "type": "string"
-                },
-                "version": {
-                    "$ref": "#/definitions/Version"
-                },
-                "author": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "commit",
-                "description",
-                "words",
-                "path",
-                "version"
-            ],
-            "additionalProperties": false,
-            "title": "Rain WordPack Metadata",
-            "description": "Schema for an expression"
-        },
-        "Word": {
-            "type": "object",
-            "properties": {
-                "word": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "aliases": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            },
-            "required": [
-                "word",
-                "description"
-            ],
-            "additionalProperties": false
-        },
-        "Version": {
-            "type": "object",
-            "properties": {
-                "major": {
-                    "type": "number"
-                },
-                "minor": {
-                    "type": "number"
-                },
-                "release": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "major",
-                "minor",
-                "release"
-            ],
-            "additionalProperties": false
-        },
-        "OpMeta": {
-            "type": "object",
-            "properties": {
-                "enum": {
-                    "type": "number"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "word": {
-                    "$ref": "#/definitions/Word"
-                },
-                "inputs": {
-                    "type": "number"
-                },
-                "outputs": {
-                    "type": "number"
-                },
-                "isZeroOperand": {
-                    "type": "boolean"
-                },
-                "category": {
-                    "type": "string"
-                },
-                "data": {}
-            },
-            "required": [
-                "enum",
-                "name",
-                "description",
-                "word",
-                "inputs",
-                "outputs",
-                "isZeroOperand",
-                "category"
-            ],
-            "additionalProperties": false
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/InterpreterEVMAddresses"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "commit": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "wordpack": {
+      "$ref": "#/definitions/WordPackMetadata"
+    },
+    "opmeta": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/OpMeta"
+      }
+    },
+    "storageLength": {
+      "type": "number"
+    },
+    "path": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "#/definitions/Version"
+    },
+    "author": {
+      "type": "string"
     }
+  },
+  "required": [
+    "addresses",
+    "name",
+    "commit",
+    "description",
+    "wordpack",
+    "opmeta",
+    "storageLength",
+    "path",
+    "version"
+  ],
+  "additionalProperties": false,
+  "title": "Rain Interpreter Metadata",
+  "description": "Schema for an interpreter",
+  "definitions": {
+    "InterpreterEVMAddresses": {
+      "type": "object",
+      "properties": {
+        "chainId": {
+          "type": "number"
+        },
+        "knownAddresses": {
+          "$ref": "#/definitions/InterpreterChainEVMAddresses"
+        }
+      },
+      "required": ["chainId", "knownAddresses"],
+      "additionalProperties": false
+    },
+    "InterpreterChainEVMAddresses": {
+      "type": "object",
+      "properties": {
+        "interpreter": {
+          "type": "string"
+        },
+        "integrity": {
+          "type": "string"
+        },
+        "deployer": {
+          "type": "string"
+        }
+      },
+      "required": ["interpreter", "integrity", "deployer"],
+      "additionalProperties": false
+    },
+    "WordPackMetadata": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Word"
+          }
+        },
+        "path": {
+          "type": "string"
+        },
+        "version": {
+          "$ref": "#/definitions/Version"
+        },
+        "author": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "commit", "description", "words", "path", "version"],
+      "additionalProperties": false,
+      "title": "Rain WordPack Metadata",
+      "description": "Schema for an expression"
+    },
+    "Word": {
+      "type": "object",
+      "properties": {
+        "word": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["word", "description"],
+      "additionalProperties": false,
+      "description": "Information about a single word"
+    },
+    "Version": {
+      "type": "object",
+      "properties": {
+        "major": {
+          "type": "number"
+        },
+        "minor": {
+          "type": "number"
+        },
+        "release": {
+          "type": "string"
+        }
+      },
+      "required": ["major", "minor", "release"],
+      "additionalProperties": false,
+      "description": "Version of this metadata"
+    },
+    "OpMeta": {
+      "type": "object",
+      "properties": {
+        "enum": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "word": {
+          "$ref": "#/definitions/Word"
+        },
+        "inputs": {
+          "type": "number"
+        },
+        "outputs": {
+          "type": "number"
+        },
+        "isZeroOperand": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string"
+        },
+        "data": {}
+      },
+      "required": [
+        "enum",
+        "name",
+        "description",
+        "word",
+        "inputs",
+        "outputs",
+        "isZeroOperand",
+        "category"
+      ],
+      "additionalProperties": false,
+      "description": "Information about opcodes"
+    }
+  }
 }

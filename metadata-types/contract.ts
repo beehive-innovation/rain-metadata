@@ -10,12 +10,13 @@ export type ContractMetadata = {
     name: string
     source: string
     commit: string
+    bytecodeHash: string
     description: string
     type: string
     expressions?: Expression[]
-    contextColumns: ContextColumn[]
     inputs?: Input[]
     version: Version
+    interpreterFields?: InterpreterFields
 }
 
 /*
@@ -27,6 +28,25 @@ export type Expression = {
     path: string
     examples: string[]
     contextColumns?: ContextColumn[]
+}
+
+/*
+ * The interpreter and deployer input fields.
+ */
+export type InterpreterFields = {
+    // the path in the abi for the interpreter address input
+    interpreterFieldPath: string
+    // the path in the abi for the deployer address input
+    deployerFieldPath: string
+}
+
+/*
+ * Additional information about inputs in this ABI.
+ */
+export type Input = {
+    name: string
+    description?: string
+    path: string
 }
 
 /*
@@ -43,14 +63,6 @@ export type ContextColumn = {
  */
 export type ContextCell = {
     name: string
-    description?: string
-}
-
-/*
- * Additional information about inputs in this ABI.
- */
-export type Input = {
-    name: string
-    description?: string
-    path: string
+    alias: string
+    description: string
 }
