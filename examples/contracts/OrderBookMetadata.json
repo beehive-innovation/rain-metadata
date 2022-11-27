@@ -84,12 +84,10 @@
       ]
     }
   ],
-  "interpreterFields": [
-    {
-      "deployerFieldPath": "[11].inputs[0].components[0]",
-      "interpreterFieldPath": "[11].inputs[0].components[1]"
-    }
-  ],
+  "interpreterFields": {
+    "deployerFieldPath": "[11].inputs[0].components[0]",
+    "interpreterFieldPath": "[11].inputs[0].components[1]"
+  },
   "inputs": [
     {
       "name": "Valid inputs",
