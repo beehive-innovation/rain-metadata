@@ -61,7 +61,10 @@
           "type": "number"
         },
         "knownAddresses": {
-          "$ref": "#/definitions/InterpreterChainEVMAddresses"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterpreterChainEVMAddresses"
+          }
         }
       },
       "required": ["chainId", "knownAddresses"],

@@ -21,7 +21,7 @@ export type InterpreterMetadata = {
 
 export type InterpreterEVMAddresses = {
     chainId: number
-    knownAddresses: InterpreterChainEVMAddresses
+    knownAddresses: InterpreterChainEVMAddresses[]
 }
 
 export type InterpreterChainEVMAddresses = {
