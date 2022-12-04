@@ -38,7 +38,7 @@
       "name": "Can transfer",
       "path": "[5].inputs[0].components[2]",
       "description": "An expression that determines whether this token can be transferred.",
-      "signedContext": "false",
+      "signedContext": false,
       "contextColumns": [
         {
           "name": "Base",

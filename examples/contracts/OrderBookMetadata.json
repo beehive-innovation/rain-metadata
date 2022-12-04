@@ -31,7 +31,7 @@
       "name": "Order",
       "path": "[11].inputs[0].components[2]",
       "description": "An expression for the order.",
-      "signedContext": "false",
+      "signedContext": false,
       "contextColumns": [
         {
           "name": "Base",
