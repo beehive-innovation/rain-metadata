@@ -1,10 +1,20 @@
 {
   "name": "Order Book",
-  "description": "Description",
   "type": "Contract",
-  "source": "https://github.com/beehive-innovation/rain-protocol",
   "commit": "d35c301661393f8aa70bc808d1f8fbeefe3c2a6a",
-  "bytecodeHash": "123",
+  "inputs": [
+    {
+      "name": "Valid inputs",
+      "path": "[11].inputs[0].components[3]",
+      "description": "Token address and vault ID combinations that are valid inputs for this Order."
+    },
+    {
+      "name": "Valid outputs",
+      "path": "[11].inputs[0].components[4]",
+      "description": "Token address and vault ID combinations that are valid outputs for this Order."
+    }
+  ],
+  "source": "https://github.com/beehive-innovation/rain-protocol",
   "version": {
     "major": 0,
     "minor": 0
@@ -15,11 +25,13 @@
       "knownAddresses": ["0x75b4A6c9238A5206adBa189221B90ebbFe4ac248"]
     }
   ],
+  "description": "Description",
   "expressions": [
     {
       "name": "Order",
-      "description": "An expression for the order.",
       "path": "[11].inputs[0].components[2]",
+      "description": "An expression for the order.",
+      "signedContext": "false",
       "contextColumns": [
         {
           "name": "Base",
@@ -43,14 +55,15 @@
         },
         {
           "name": "Base",
-          "cells": []
+          "cells": [{}, {}, {}]
         },
         {
           "name": "Inputs",
           "cells": [
             {
               "name": "Input token",
-              "alias": "The input token address"
+              "alias": "input-token",
+              "description": "The input token address"
             },
             {
               "name": "Input vault ID",
@@ -68,7 +81,8 @@
           "cells": [
             {
               "name": "Output token",
-              "alias": "The output token address"
+              "alias": "output-address",
+              "description": "The output token address"
             },
             {
               "name": "Output vault ID",
@@ -84,20 +98,9 @@
       ]
     }
   ],
+  "bytecodeHash": "123",
   "interpreterFields": {
     "deployerFieldPath": "[11].inputs[0].components[0]",
     "interpreterFieldPath": "[11].inputs[0].components[1]"
-  },
-  "inputs": [
-    {
-      "name": "Valid inputs",
-      "description": "Token address and vault ID combinations that are valid inputs for this Order.",
-      "path": "[11].inputs[0].components[3]"
-    },
-    {
-      "name": "Valid outputs",
-      "description": "Token address and vault ID combinations that are valid outputs for this Order.",
-      "path": "[11].inputs[0].components[4]"
-    }
-  ]
+  }
 }
