@@ -99,6 +99,9 @@
           "items": {
             "$ref": "#/definitions/ContextColumn"
           }
+        },
+        "signedContext": {
+          "type": "boolean"
         }
       },
       "required": ["name", "description", "path", "examples"],

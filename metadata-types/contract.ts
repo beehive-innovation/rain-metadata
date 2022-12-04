@@ -28,6 +28,7 @@ export type Expression = {
     path: string
     examples: string[]
     contextColumns?: ContextColumn[]
+    signedContext?: boolean
 }
 
 /*
