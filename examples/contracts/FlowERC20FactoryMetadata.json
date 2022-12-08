@@ -1,18 +1,7 @@
 {
   "name": "Flow ERC20 Factory",
   "type": "ERC20 Factory",
-  "commit": "253c5fb2184b886216b682cae6076597f5e8e086",
-  "inputs": [
-    {
-      "name": "Name",
-      "path": "[5].inputs[0].components[0]",
-      "description": "Name of the token"
-    },
-    {
-      "name": "Flow config",
-      "path": "[5].inputs[0].components[3]"
-    }
-  ],
+  "commit": "208faf49a0e5aa391ef2f93b3de250eb7f9221ef",
   "source": "https://github.com/beehive-innovation/rain-protocol",
   "version": {
     "major": 0,
@@ -20,19 +9,27 @@
   },
   "addresses": [
     {
-      "chainId": 1,
-      "knownAddresses": ["0x0"]
-    },
-    {
-      "chainId": 1,
-      "knownAddresses": ["0x1"]
-    },
-    {
-      "chainId": 137,
-      "knownAddresses": ["0x1"]
+      "chainId": 80001,
+      "knownAddresses": ["0x83Ca48DFCb890D3fEC476233F16c58284adf6483"]
     }
   ],
   "description": "An ERC20 token that can be minted using any of the deployed Flow expressions. This token can be made conditionally soulbound by using the 'can transfer' expression.",
+  "interpreterFields": {
+    "deployerFieldPath": "[5].inputs[0].components[3].components[0]",
+    "interpreterFieldPath": "[5].inputs[0].components[3].components[1]"
+  },
+  "inputs": [
+    {
+      "name": "Name",
+      "path": "[5].inputs[0].components[0]",
+      "description": "Name of the token"
+    },
+    {
+      "name": "Symbol",
+      "path": "[5].inputs[0].components[1]",
+      "description": "Name of the token"
+    }
+  ],
   "expressions": [
     {
       "name": "Can transfer",
@@ -45,15 +42,18 @@
           "cells": [
             {
               "name": "From",
-              "alias": "from"
+              "alias": "from-address",
+              "description": "The address this token is being transferred from"
             },
             {
               "name": "To",
-              "alias": "to"
+              "alias": "to-address",
+              "description": "The address this token is being transferred from"
             },
             {
               "name": "amount",
-              "alias": "amount"
+              "alias": "transfer-amount",
+              "description": "The amount of this token being transferred"
             }
           ]
         }
@@ -69,13 +69,34 @@
           "name": "Base",
           "cells": [
             {
-              "name": "From"
+              "name": "Flow ID",
+              "alias": "flow-id",
+              "description": "The address of this flow (flow id)"
             },
             {
-              "name": "To"
+              "name": "ID",
+              "alias": "id",
+              "description": "The id passed in when flowing"
+            }
+          ]
+        },
+        {
+          "name": "Signers",
+          "cells": [
+            {
+              "name": "Column 1 signer",
+              "alias": "col-1-signer",
+              "description": "The signer of signed context column 1"
             },
             {
-              "name": "amount"
+              "name": "Column 2 signer",
+              "alias": "col-1-signer",
+              "description": "The signer of signed context column 2"
+            },
+            {
+              "name": "Column 3 signer",
+              "alias": "col-1-signer",
+              "description": "The signer of signed context column 3"
             }
           ]
         }
