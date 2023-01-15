@@ -64,7 +64,7 @@ export type InputMeta = 0 | {
         /**
          * @title Input Parameter Length
          * @description
-         * An arithmetical script that specifies the length of a dynamic argument. The "this" keyword is reserved for accessing the exctraced value from operand bits, example: "(this + 1) * 2". Only used for opcodes with multiple dynamic input arguments.
+         * An arithmetical script that specifies the length of a dynamic argument. The "inputs" keyword is reserved for accessing the exctraced value from operand bits, example: "(inputs + 1) * 2". Only used for opcodes with multiple dynamic input arguments.
          */
         length?: string;
 
@@ -78,7 +78,7 @@ export type InputMeta = 0 | {
     /**
      * @title Inputs-Allocated Operand Bits Computation
      * @description 
-     * Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The "this" keyword is reserved for accessing the exctraced value, example: "(this + 1) * 2". Required only for computed (non-constant) inputs
+     * Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The "bits" keyword is reserved for accessing the exctraced value, example: "(bits + 1) * 2". Required only for computed (non-constant) inputs
      */
     computation?: string;
 }
@@ -95,7 +95,7 @@ export type OutputMeta = number | {
     /**
      * @title Outputs-Allocated Operand Bits Computation
      * @description 
-     * Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The "this" keyword is reserved for accessing the exctraced value, example: "(this + 1) * 2". Required only for computed (non-constant) outputs
+     * Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The "bits" keyword is reserved for accessing the exctraced value, example: "(bits + 1) * 2". Required only for computed (non-constant) outputs
      */
     computation?: string;
 }
@@ -121,7 +121,7 @@ export type OperandArg = {
     /**
      * @title Allocated Operand Bits Computation
      * @description 
-     * Specifies any arithmetical operation that needs to be applied on the value of this operand argument. The "this" keyword is reserved for accessing the value of this operand argument, example: "(this + 1) * 2"
+     * Specifies any arithmetical operation that needs to be applied on the value of this operand argument. The "arg" keyword is reserved for accessing the value of this operand argument, example: "(arg + 1) * 2"
      */
     computation?: string;
     /**
