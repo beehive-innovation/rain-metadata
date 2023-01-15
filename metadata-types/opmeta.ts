@@ -18,7 +18,7 @@ export type OpMeta = {
      * @title Opcode Operand
      * @description Data required in order to calculate and format the operand
      */
-    operand: OperandArg[];
+    operand: 0 | OperandArg[];
     /**
      * @title Opcode Inputs
      * @description Data required to specify the inputs the opcode
