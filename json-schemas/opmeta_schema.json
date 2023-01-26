@@ -70,7 +70,9 @@
                 "bits": {
                     "type": "array",
                     "items": {
-                        "type": "integer"
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 15
                     },
                     "minItems": 2,
                     "maxItems": 2,
@@ -100,7 +102,9 @@
                             {
                                 "type": "array",
                                 "items": {
-                                    "type": "integer"
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 65535
                                 },
                                 "minItems": 1,
                                 "maxItems": 1
@@ -108,7 +112,9 @@
                             {
                                 "type": "array",
                                 "items": {
-                                    "type": "integer"
+                                    "type": "integer",
+                                    "minimum": 0,
+                                    "maximum": 65535
                                 },
                                 "minItems": 2,
                                 "maxItems": 2
@@ -167,7 +173,9 @@
                         "bits": {
                             "type": "array",
                             "items": {
-                                "type": "integer"
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 15
                             },
                             "minItems": 2,
                             "maxItems": 2,
@@ -190,7 +198,8 @@
         "OutputMeta": {
             "anyOf": [
                 {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 {
                     "type": "object",
@@ -198,7 +207,9 @@
                         "bits": {
                             "type": "array",
                             "items": {
-                                "type": "integer"
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 15
                             },
                             "minItems": 2,
                             "maxItems": 2,

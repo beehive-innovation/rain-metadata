@@ -1,4 +1,18 @@
 /**
+ * @minimum 0
+ */
+type Integer = number
+/**
+ * @minimum 0
+ * @maximum 15
+ */
+type BitInteger = number
+/**
+ * @minimum 0
+ * @maximum 65535
+ */
+type LengthInteger = number
+/**
  * @title Opcode Metadata
  * @description Schema for opcodes metadata used by Rainlang parser and formatter
  * @version 0.01
@@ -71,7 +85,7 @@ export type InputMeta = 0 | {
      * @description 
      * Specifies bits of the operand allocated for number of inputs. Determines the number of inputs for a computed opcode inputs. Required only for computed (non-constant) inputs
      */
-    bits?: [number, number];
+    bits?: [BitInteger, BitInteger];
     /**
      * @title Inputs-Allocated Operand Bits Computation
      * @description 
@@ -82,13 +96,13 @@ export type InputMeta = 0 | {
 
 // Data type of opcode's outputs that determines the number of  
 // outputs an opcode has and provide information about them
-export type OutputMeta = number | {
+export type OutputMeta = Integer | {
     /**
      * @title Outputs-Allocated Operand Bits
      * @description 
      * Specifies bits of the operand allocated for number of outputs. Determines the number of outputs for a computed opcode outputs. Required only for computed (non-constant) outputs
      */
-    bits?: [number, number];
+    bits?: [BitInteger, BitInteger];
     /**
      * @title Outputs-Allocated Operand Bits Computation
      * @description 
@@ -103,7 +117,7 @@ export type OperandArg = {
      * @title Allocated Operand Bits
      * @description Specifies the bits to allocate to this operand argument
      */
-    bits: [number, number];
+    bits: [BitInteger, BitInteger];
     /**
      * @title Operand Argument Name
      * @description 
@@ -127,5 +141,5 @@ export type OperandArg = {
      * @description 
      * Determines the valid range of the operand argument. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9
      */
-    validRange?: ([number] | [number, number])[];
+    validRange?: ([LengthInteger] | [LengthInteger, LengthInteger])[];
 }
