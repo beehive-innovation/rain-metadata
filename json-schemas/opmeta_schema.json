@@ -8,7 +8,8 @@
                 "name": {
                     "type": "string",
                     "title": "Opcode Name",
-                    "description": "The primary word used to identify the opcode"
+                    "description": "The primary word used to identify the opcode",
+                    "pattern": "^[A-Za-z][0-9A-Za-z\\-\\_]*$"
                 },
                 "desc": {
                     "type": "string",
@@ -18,7 +19,7 @@
                 "operand": {
                     "anyOf": [
                         {
-                            "type": "number",
+                            "type": "integer",
                             "const": 0
                         },
                         {
@@ -48,7 +49,8 @@
                         "type": "string"
                     },
                     "title": "Opcode Aliases",
-                    "description": "Extra word used to identify the opcode"
+                    "description": "Extra word used to identify the opcode",
+                    "pattern": "^[A-Za-z][0-9A-Za-z\\-\\_]*$"
                 }
             },
             "required": [
@@ -78,7 +80,8 @@
                 "name": {
                     "type": "string",
                     "title": "Operand Argument Name",
-                    "description": "Name of the operand argument. Argument with the name of \"inputs\" is reserved as it will not be typed when writing expressions but will be in operand construction"
+                    "description": "Name of the operand argument. Argument with the name of \"inputs\" is reserved as it will not be typed when writing expressions but will be in operand construction",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9\\s\\-\\_]*[A-Za-z0-9\\-\\_]$"
                 },
                 "desc": {
                     "type": "string",
@@ -139,7 +142,8 @@
                                     "name": {
                                         "type": "string",
                                         "title": "Input Parameter Name",
-                                        "description": "Name of the input parameter"
+                                        "description": "Name of the input parameter",
+                                        "pattern": "^[A-Za-z0-9][A-Za-z0-9\\s\\-\\_]*[A-Za-z0-9\\-\\_]$"
                                     },
                                     "desc": {
                                         "type": "string",
@@ -204,7 +208,7 @@
                         "computation": {
                             "type": "string",
                             "title": "Outputs-Allocated Operand Bits Computation",
-                            "description": "Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The \"this\" keyword is reserved for accessing the exctraced value, example: \"(this + 1) * 2\". Required only for computed (non-constant) outputs"
+                            "description": "Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The \"bits\" keyword is reserved for accessing the exctraced value, example: \"(bits + 1) * 2\". Required only for computed (non-constant) outputs"
                         }
                     },
                     "additionalProperties": false
