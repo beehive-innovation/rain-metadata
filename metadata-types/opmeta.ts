@@ -139,7 +139,7 @@ export type OperandArg = {
     /**
      * @title Operand Argument Range
      * @description 
-     * Determines the valid range of the operand argument. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9
+     * Determines the valid range of the operand argument before any computation applied. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9
      */
     validRange?: ([LengthInteger] | [LengthInteger, LengthInteger])[];
 }
