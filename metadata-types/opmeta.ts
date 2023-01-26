@@ -121,7 +121,7 @@ export type OperandArg = {
     /**
      * @title Operand Argument Name
      * @description 
-     * Name of the operand argument. Argument with the name of "inputs" is reserved as it will not be typed when writing expressions but will be in operand construction
+     * Name of the operand argument. Argument with the name of "inputs" is reserved so that it wont be be typed inside <> and its value needed to construct the operand will be the number of items inside the opcode's parens (computation will apply to this value if provided)
      * @pattern ^[A-Za-z0-9][A-Za-z0-9\s\-\_]*[A-Za-z0-9\-\_]$
      */
     name: "inputs" | string;
@@ -139,7 +139,7 @@ export type OperandArg = {
     /**
      * @title Operand Argument Range
      * @description 
-     * Determines the valid range of the operand argument before any computation applied. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9
+     * Determines the valid range of the operand argument before any computation applied. For an Operand Argument named \"Inputs\" it defines the valid length of items inside opcode's parens. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9
      */
     validRange?: ([LengthInteger] | [LengthInteger, LengthInteger])[];
 }
