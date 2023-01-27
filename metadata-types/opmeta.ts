@@ -13,7 +13,7 @@ type BitInteger = number
  */
 type LengthInteger = number
 /**
- * @pattern ^[A-Za-z][0-9A-Za-z-_]*$
+ * @pattern ^[A-Za-z_][0-9A-Za-z-_]*$
  */
 type StringArray = string
 /**
@@ -25,7 +25,7 @@ export type OpMeta = {
     /**
      * @title Opcode Name
      * @description The primary word used to identify the opcode
-     * @pattern ^[A-Za-z][0-9A-Za-z-_]*$
+     * @pattern ^[A-Za-z_][0-9A-Za-z-_]*$
      */
     name: string;
     /**
@@ -51,7 +51,7 @@ export type OpMeta = {
     /**
      * @title Opcode Aliases
      * @description Extra word used to identify the opcode
-     * @pattern ^[A-Za-z][0-9A-Za-z-_]*$
+     * @pattern ^[A-Za-z_][0-9A-Za-z-_]*$
      */
     aliases?: StringArray[];
 }
@@ -68,7 +68,7 @@ export type InputMeta = 0 | {
         /**
          * @title Input Parameter Name
          * @description Name of the input parameter
-         * @pattern ^[A-Za-z0-9][A-Za-z0-9-_\s]*[A-Za-z0-9-_]$
+         * @pattern ^[A-Za-z0-9_][A-Za-z0-9-_\s]*[A-Za-z0-9-_]$
          */
         name: string;
         /**
@@ -126,7 +126,7 @@ export type OperandArg = {
      * @title Operand Argument Name
      * @description 
      * Name of the operand argument. Argument with the name of "inputs" is reserved so that it wont be be typed inside <> and its value needed to construct the operand will be the number of items inside the opcode's parens (computation will apply to this value if provided)
-     * @pattern ^[A-Za-z0-9][A-Za-z0-9-_\s]*[A-Za-z0-9-_]$
+     * @pattern ^[A-Za-z0-9_][A-Za-z0-9-_\s]*[A-Za-z0-9-_]$
      */
     name: "inputs" | string;
     /**
