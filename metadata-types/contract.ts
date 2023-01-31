@@ -27,6 +27,7 @@ export type Expression = {
     description: string
     path: string
     examples: string[]
+    contextDescription?: string
     contextColumns?: ContextColumn[]
     signedContext?: boolean
     callerContext?: boolean

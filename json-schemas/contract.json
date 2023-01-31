@@ -94,6 +94,9 @@
             "type": "string"
           }
         },
+        "contextDescription": {
+          "type": "string"
+        },
         "contextColumns": {
           "type": "array",
           "items": {
