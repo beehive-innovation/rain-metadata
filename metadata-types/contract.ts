@@ -29,6 +29,7 @@ export type Expression = {
     examples: string[]
     contextColumns?: ContextColumn[]
     signedContext?: boolean
+    callerContext?: boolean
 }
 
 /*

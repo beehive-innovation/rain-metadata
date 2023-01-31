@@ -102,6 +102,9 @@
         },
         "signedContext": {
           "type": "boolean"
+        },
+        "callerContext": {
+          "type": "boolean"
         }
       },
       "required": ["name", "description", "path", "examples"],
