@@ -1,4 +1,4 @@
-import { EVMAddress, Version } from "./general";
+import { EVMAddress } from "./general";
 
 /**
  * @title Rain Contract Metadata
@@ -6,17 +6,15 @@ import { EVMAddress, Version } from "./general";
  * @version 0.01
  */
 export type ContractMetadata = {
-    addresses: EVMAddress[]
     name: string
     source: string
+    type: string
     commit: string
     bytecodeHash: string
     description: string
-    type: string
-    expressions?: Expression[]
+    addresses: EVMAddress[]
     inputs?: Input[]
-    version: Version
-    interpreterFields?: InterpreterFields
+    expressions?: Expression[]
 }
 
 /*
