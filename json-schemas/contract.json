@@ -2,16 +2,13 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "addresses": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/EVMAddress"
-      }
-    },
     "name": {
       "type": "string"
     },
     "source": {
+      "type": "string"
+    },
+    "type": {
       "type": "string"
     },
     "commit": {
@@ -23,13 +20,10 @@
     "description": {
       "type": "string"
     },
-    "type": {
-      "type": "string"
-    },
-    "expressions": {
+    "addresses": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Expression"
+        "$ref": "#/definitions/EVMAddress"
       }
     },
     "inputs": {
@@ -38,22 +32,21 @@
         "$ref": "#/definitions/Input"
       }
     },
-    "version": {
-      "$ref": "#/definitions/Version"
-    },
-    "interpreterFields": {
-      "$ref": "#/definitions/InterpreterFields"
+    "expressions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Expression"
+      }
     }
   },
   "required": [
-    "addresses",
     "name",
     "source",
+    "type",
     "commit",
     "bytecodeHash",
     "description",
-    "type",
-    "version"
+    "addresses"
   ],
   "additionalProperties": false,
   "title": "Rain Contract Metadata",
@@ -76,6 +69,22 @@
       "additionalProperties": false,
       "description": "The address of the deployed contract for the specified chain."
     },
+    "Input": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": ["name", "path"],
+      "additionalProperties": false
+    },
     "Expression": {
       "type": "object",
       "properties": {
@@ -94,6 +103,9 @@
             "type": "string"
           }
         },
+        "contextDescription": {
+          "type": "string"
+        },
         "contextColumns": {
           "type": "array",
           "items": {
@@ -101,6 +113,9 @@
           }
         },
         "signedContext": {
+          "type": "boolean"
+        },
+        "callerContext": {
           "type": "boolean"
         }
       },
@@ -140,52 +155,6 @@
         }
       },
       "required": ["name", "alias", "description"],
-      "additionalProperties": false
-    },
-    "Input": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": ["name", "path"],
-      "additionalProperties": false
-    },
-    "Version": {
-      "type": "object",
-      "properties": {
-        "major": {
-          "type": "number"
-        },
-        "minor": {
-          "type": "number"
-        },
-        "release": {
-          "type": "string"
-        }
-      },
-      "required": ["major", "minor", "release"],
-      "additionalProperties": false,
-      "description": "Version of this metadata"
-    },
-    "InterpreterFields": {
-      "type": "object",
-      "properties": {
-        "interpreterFieldPath": {
-          "type": "string"
-        },
-        "deployerFieldPath": {
-          "type": "string"
-        }
-      },
-      "required": ["interpreterFieldPath", "deployerFieldPath"],
       "additionalProperties": false
     }
   }

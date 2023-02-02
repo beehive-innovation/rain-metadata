@@ -1,10 +1,10 @@
 {
-  "name": "Flow ERC20 Factory",
-  "type": "ERC20 Factory",
+  "name": "Flow ERC1155 Factory",
+  "type": "ERC1155 Factory",
   "source": "https://github.com/rainprotocol/rain-protocol",
   "commit": "891b44d186e9c30d520b056314666b53c5d9ff64",
   "bytecodeHash": "123",
-  "description": "An ERC20 token that can be minted using any of the deployed Flow expressions. This token can be made conditionally soulbound by using the 'can transfer' expression.",
+  "description": "An ERC1155 token that can be minted using any of the deployed Flow expressions. This token can be made conditionally soulbound by using the 'can transfer' expression.",
   "addresses": [
     {
       "chainId": 80001,
@@ -13,20 +13,15 @@
   ],
   "inputs": [
     {
-      "name": "Name",
+      "name": "Uri",
       "path": "[6].inputs[0].components[0]",
-      "description": "Name of the token"
-    },
-    {
-      "name": "Symbol",
-      "path": "[6].inputs[0].components[1]",
-      "description": "Symbol for the token"
+      "description": "A base URI for this contract's tokens."
     }
   ],
   "expressions": [
     {
       "name": "Can transfer",
-      "path": "[6].inputs[0].components[2]",
+      "path": "[6].inputs[0].components[1]",
       "description": "An expression that determines whether this token can be transferred. Mint and burns must be handled by the flow expressions.",
       "signedContext": false,
       "contextColumns": [
@@ -36,6 +31,11 @@
             {
               "name": "Caller",
               "alias": "caller",
+              "description": "The contract or EOA that called transfer"
+            },
+            {
+              "name": "Operator",
+              "alias": "operator",
               "description": "The contract or EOA that called transfer"
             },
             {
@@ -49,9 +49,14 @@
               "description": "The address this token is being transferred from"
             },
             {
-              "name": "amount",
-              "alias": "transfer-amount",
-              "description": "The amount of this token being transferred"
+              "name": "Token ID",
+              "alias": "token-id",
+              "description": "The ID of the token being transferred"
+            },
+            {
+              "name": "Amount",
+              "alias": "amounts",
+              "description": "If a mint transfer, the number of tokens minted. Batch size is always non-zero"
             }
           ]
         }
@@ -59,7 +64,7 @@
     },
     {
       "name": "Flows",
-      "path": "[5].inputs[0].components[3]",
+      "path": "[6].inputs[0].components[2]",
       "description": "The available flows for this token.",
       "signedContext": true,
       "callerContext": true,
@@ -75,7 +80,7 @@
             {
               "name": "This contract",
               "alias": "this",
-              "description": "The address of the FlowERC20 contract this expression is for"
+              "description": "The address of the FlowERC721 contract this expression is for"
             }
           ]
         }
