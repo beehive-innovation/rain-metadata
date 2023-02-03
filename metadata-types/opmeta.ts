@@ -1,31 +1,12 @@
 /**
- * @minimum 0
- */
-type Integer = number
-/**
- * @minimum 0
- * @maximum 15
- */
-type BitInteger = number
-/**
- * @minimum 0
- * @maximum 65535
- */
-type LengthInteger = number
-/**
- * @pattern ^[A-Za-z_][0-9A-Za-z-_]*$
- */
-type StringArray = string
-/**
  * @title Opcode Metadata
- * @description Schema for opcodes metadata used by Rainlang parser and formatter
- * @version 0.01
+ * @description Schema for opcodes metadata used by RainLang
 */
 export type OpMeta = {
     /**
      * @title Opcode Name
      * @description The primary word used to identify the opcode
-     * @pattern ^[A-Za-z_][0-9A-Za-z-_]*$
+     * @pattern ^[a-z][0-9a-z-]*$
      */
     name: string;
     /**
@@ -37,7 +18,7 @@ export type OpMeta = {
      * @title Opcode Operand
      * @description Data required in order to calculate and format the operand
      */
-    operand: 0 | OperandArg[];
+    operand: 0 | OperandArg;
     /**
      * @title Opcode Inputs
      * @description Data required to specify the inputs the opcode
@@ -51,7 +32,7 @@ export type OpMeta = {
     /**
      * @title Opcode Aliases
      * @description Extra word used to identify the opcode
-     * @pattern ^[A-Za-z_][0-9A-Za-z-_]*$
+     * @pattern ^[a-z][0-9a-z-]*$
      */
     aliases?: StringArray[];
 }
@@ -68,7 +49,7 @@ export type InputMeta = 0 | {
         /**
          * @title Input Parameter Name
          * @description Name of the input parameter
-         * @pattern ^[A-Za-z0-9_][A-Za-z0-9-_\s]*[A-Za-z0-9-_]$
+         * @pattern ^[a-z][0-9a-z-]*$
          */
         name: string;
         /**
@@ -116,6 +97,9 @@ export type OutputMeta = Integer | {
 }
 
 // Data type of operand arguments, used only for non-constant operands
+/**
+ * @minItems 1
+ */
 export type OperandArg = {
     /**
      * @title Allocated Operand Bits
@@ -126,7 +110,7 @@ export type OperandArg = {
      * @title Operand Argument Name
      * @description 
      * Name of the operand argument. Argument with the name of "inputs" is reserved so that it wont be be typed inside <> and its value needed to construct the operand will be the number of items inside the opcode's parens (computation will apply to this value if provided)
-     * @pattern ^[A-Za-z0-9_][A-Za-z0-9-_\s]*[A-Za-z0-9-_]$
+     * @pattern ^[a-z][0-9a-z-]*$
      */
     name: "inputs" | string;
     /**
@@ -146,4 +130,26 @@ export type OperandArg = {
      * Determines the valid range of the operand argument before any computation applied. For an Operand Argument named \"Inputs\" it defines the valid length of items inside opcode's parens. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9
      */
     validRange?: ([LengthInteger] | [LengthInteger, LengthInteger])[];
-}
+}[]
+
+/**
+ * @minimum 0
+ */
+type Integer = number
+
+/**
+ * @minimum 0
+ * @maximum 15
+ */
+type BitInteger = number
+
+/**
+ * @minimum 0
+ * @maximum 65535
+ */
+type LengthInteger = number
+
+/**
+ * @pattern ^[a-z][0-9a-z-]*$
+ */
+type StringArray = string
