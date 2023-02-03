@@ -29,14 +29,14 @@ export type ContractMetadata = {
      */
     commit: string;
     /**
-     * @title Contract's Expression Receiving Methods
+     * @title Contract Methods
      * @description Methods of the contract that receive at least one expression (EvaluableConfig) from arguments.
      * @minItems 1
      */
-    expReceivingMethods: ExpressionReceivingMethods[]
+    methods: Method[]
 }
 
-export type ExpressionReceivingMethods = {
+export type Method = {
     /**
      * @title Method Name
      */

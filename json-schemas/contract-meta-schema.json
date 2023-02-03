@@ -31,12 +31,12 @@
                     "title": "Contract Git Commit",
                     "pattern": "[a-f0-9]{40}"
                 },
-                "expReceivingMethods": {
+                "methods": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ExpressionReceivingMethods"
+                        "$ref": "#/definitions/Method"
                     },
-                    "title": "Contract's Expression Receiving Methods",
+                    "title": "Contract Methods",
                     "description": "Methods of the contract that receive at least one expression (EvaluableConfig) from arguments.",
                     "minItems": 1
                 }
@@ -47,13 +47,13 @@
                 "alias",
                 "source",
                 "commit",
-                "expReceivingMethods"
+                "methods"
             ],
             "additionalProperties": false,
             "title": "Rain Contract Metadata",
             "description": "Required info about a contract that receives expression in at least one of its methods."
         },
-        "ExpressionReceivingMethods": {
+        "Method": {
             "type": "object",
             "properties": {
                 "name": {
