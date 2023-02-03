@@ -19,7 +19,7 @@
                     "type": "string",
                     "title": "Contract Alias",
                     "description": "Alias of the contract used by RainLang, follows RainLang word pattern.",
-                    "pattern": "^[a-z][a-z0-9]*$"
+                    "pattern": "^[a-z][a-z0-9-]*$"
                 },
                 "source": {
                     "type": "string",
@@ -64,14 +64,6 @@
                     "type": "string",
                     "title": "Method Description"
                 },
-                "expressions": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Expression"
-                    },
-                    "title": "Method Expressions",
-                    "minItems": 1
-                },
                 "inputs": {
                     "type": "array",
                     "items": {
@@ -79,114 +71,20 @@
                     },
                     "title": "Method Inputs",
                     "minItems": 1
+                },
+                "expressions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Expression"
+                    },
+                    "title": "Method Expressions",
+                    "minItems": 1
                 }
             },
             "required": [
                 "name",
                 "desc",
                 "expressions"
-            ],
-            "additionalProperties": false
-        },
-        "Expression": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "title": "Expression Name"
-                },
-                "desc": {
-                    "type": "string",
-                    "title": "Expression Description"
-                },
-                "path": {
-                    "type": "string",
-                    "title": "Expression Path",
-                    "description": "Expression's path in contract's ABI."
-                },
-                "contextColumns": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ContextColumn"
-                    },
-                    "title": "Expression Context Columns",
-                    "description": "Specifies the reserved context columns of this expression."
-                },
-                "signedContext": {
-                    "type": "boolean",
-                    "title": "Expression Signed Context",
-                    "description": "Determines if this expression has signedContext."
-                },
-                "callerContext": {
-                    "type": "boolean",
-                    "title": "Expression Signed Context",
-                    "description": "Determines if this expression has callerContext."
-                }
-            },
-            "required": [
-                "name",
-                "desc",
-                "path"
-            ],
-            "additionalProperties": false
-        },
-        "ContextColumn": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "title": "Context Column Name",
-                    "pattern": "^[a-z][a-z0-9]*$"
-                },
-                "desc": {
-                    "type": "string",
-                    "title": "Context Column Description"
-                },
-                "alias": {
-                    "type": "string",
-                    "title": "Context Column Alias",
-                    "description": "Alias for the context column used in RainLang, follows rainlang valid word pattern.",
-                    "pattern": "^[a-z][a-z0-9]*$"
-                },
-                "cells": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ContextCell"
-                    },
-                    "title": "Context Column Cells",
-                    "description": "Info about the cells in this context column."
-                }
-            },
-            "required": [
-                "name",
-                "desc",
-                "alias"
-            ],
-            "additionalProperties": false
-        },
-        "ContextCell": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "title": "Context Cell Name",
-                    "pattern": "^[a-z][a-z0-9]*$"
-                },
-                "desc": {
-                    "type": "string",
-                    "title": "Context Cell Description"
-                },
-                "alias": {
-                    "type": "string",
-                    "title": "Context Cell Alias",
-                    "description": "Alias for the context cell used in RainLang, follows rainlang valid word pattern.",
-                    "pattern": "^[a-z][a-z0-9]*$"
-                }
-            },
-            "required": [
-                "name",
-                "desc",
-                "alias"
             ],
             "additionalProperties": false
         },
@@ -211,6 +109,142 @@
                 "name",
                 "desc",
                 "path"
+            ],
+            "additionalProperties": false
+        },
+        "Expression": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Expression Name"
+                },
+                "desc": {
+                    "type": "string",
+                    "title": "Expression Description"
+                },
+                "path": {
+                    "type": "string",
+                    "title": "Expression Path",
+                    "description": "Expression's path in contract's ABI."
+                },
+                "signedContext": {
+                    "type": "boolean",
+                    "title": "Expression Signed Context",
+                    "description": "Determines if this expression has signedContext."
+                },
+                "callerContext": {
+                    "type": "boolean",
+                    "title": "Expression Signed Context",
+                    "description": "Determines if this expression has callerContext."
+                },
+                "contextColumns": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ContextColumn"
+                    },
+                    "title": "Expression Context Columns",
+                    "description": "Specifies the reserved context columns of this expression."
+                }
+            },
+            "required": [
+                "name",
+                "desc",
+                "path"
+            ],
+            "additionalProperties": false
+        },
+        "ContextColumn": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Context Column Name"
+                },
+                "desc": {
+                    "type": "string",
+                    "title": "Context Column Description"
+                },
+                "alias": {
+                    "type": "string",
+                    "title": "Context Column Alias",
+                    "description": "Alias for the context column used in RainLang, follows rainlang valid word pattern.",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "opcode": {
+                    "type": "string",
+                    "title": "Opcode",
+                    "description": "Opcode to be assigned to.",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "operand": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 65535
+                    },
+                    "title": "Operand",
+                    "description": "Operand to be assigned to, values inside <>.",
+                    "minItems": 1
+                },
+                "cells": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ContextCell"
+                    },
+                    "title": "Context Column Cells",
+                    "description": "Info about the cells in this context column."
+                }
+            },
+            "required": [
+                "name",
+                "alias",
+                "opcode",
+                "operand"
+            ],
+            "additionalProperties": false
+        },
+        "ContextCell": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Context Cell Name"
+                },
+                "desc": {
+                    "type": "string",
+                    "title": "Context Cell Description"
+                },
+                "alias": {
+                    "type": "string",
+                    "title": "Context Cell Alias",
+                    "description": "Alias for the context cell used in RainLang, follows rainlang valid word pattern.",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "opcode": {
+                    "type": "string",
+                    "title": "Opcode",
+                    "description": "Opcode to be assigned to.",
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                },
+                "operand": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 65535
+                    },
+                    "title": "Operand",
+                    "description": "Operand to be assigned to, values inside <>.",
+                    "minItems": 1
+                }
+            },
+            "required": [
+                "name",
+                "alias",
+                "opcode",
+                "operand"
             ],
             "additionalProperties": false
         }
