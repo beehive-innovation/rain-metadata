@@ -9,13 +9,13 @@
                 "name": {
                     "type": "string",
                     "title": "Opcode Name",
-                    "description": "The primary word used to identify the opcode",
+                    "description": "The primary word used to identify the opcode.",
                     "pattern": "^[a-z][0-9a-z-]*$"
                 },
                 "desc": {
                     "type": "string",
                     "title": "Opcode Description",
-                    "description": "Describes what the opcode does briefly"
+                    "description": "Describes what the opcode does briefly."
                 },
                 "operand": {
                     "anyOf": [
@@ -28,17 +28,17 @@
                         }
                     ],
                     "title": "Opcode Operand",
-                    "description": "Data required in order to calculate and format the operand"
+                    "description": "Data required in order to calculate and format the operand."
                 },
                 "inputs": {
                     "$ref": "#/definitions/InputMeta",
                     "title": "Opcode Inputs",
-                    "description": "Data required to specify the inputs the opcode"
+                    "description": "Data required to specify the inputs the opcode."
                 },
                 "outputs": {
                     "$ref": "#/definitions/OutputMeta",
                     "title": "Opcode Outputs",
-                    "description": "Data required to specify the outputs the opcode"
+                    "description": "Data required to specify the outputs the opcode."
                 },
                 "aliases": {
                     "type": "array",
@@ -47,7 +47,7 @@
                         "pattern": "^[a-z][0-9a-z-]*$"
                     },
                     "title": "Opcode Aliases",
-                    "description": "Extra word used to identify the opcode",
+                    "description": "Extra word used to identify the opcode.",
                     "pattern": "^[a-z][0-9a-z-]*$"
                 }
             },
@@ -60,7 +60,7 @@
             ],
             "additionalProperties": false,
             "title": "Opcode Metadata",
-            "description": "Schema for opcodes metadata used by RainLang"
+            "description": "Schema for opcodes metadata used by RainLang."
         },
         "OperandArg": {
             "type": "array",
@@ -77,23 +77,23 @@
                         "minItems": 2,
                         "maxItems": 2,
                         "title": "Allocated Operand Bits",
-                        "description": "Specifies the bits to allocate to this operand argument"
+                        "description": "Specifies the bits to allocate to this operand argument."
                     },
                     "name": {
                         "type": "string",
                         "title": "Operand Argument Name",
-                        "description": "Name of the operand argument. Argument with the name of \"inputs\" is reserved so that it wont be be typed inside <> and its value needed to construct the operand will be the number of items inside the opcode's parens (computation will apply to this value if provided)",
+                        "description": "Name of the operand argument. Argument with the name of \"inputs\" is reserved so that it wont be be typed inside <> and its value needed to construct the operand will be the number of items inside the opcode's parens (computation will apply to this value if provided).",
                         "pattern": "^[a-z][0-9a-z-]*$"
                     },
                     "desc": {
                         "type": "string",
                         "title": "Operand Argument Description",
-                        "description": "Description of the operand argument"
+                        "description": "Description of the operand argument."
                     },
                     "computation": {
                         "type": "string",
                         "title": "Allocated Operand Bits Computation",
-                        "description": "Specifies any arithmetical operation that needs to be applied on the value of this operand argument. The \"arg\" keyword is reserved for accessing the value of this operand argument, example: \"(arg + 1) * 2\""
+                        "description": "Specifies any arithmetical operation that needs to be applied on the value of this operand argument. The \"arg\" keyword is reserved for accessing the value of this operand argument, example: \"(arg + 1) * 2\"."
                     },
                     "validRange": {
                         "type": "array",
@@ -122,7 +122,7 @@
                             ]
                         },
                         "title": "Operand Argument Range",
-                        "description": "Determines the valid range of the operand argument before any computation applied. For an Operand Argument named \\\"Inputs\\\" it defines the valid length of items inside opcode's parens. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9"
+                        "description": "Determines the valid range of the operand argument before any computation applied. For an Operand Argument named \\\"Inputs\\\" it defines the valid length of items inside opcode's parens. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9."
                     }
                 },
                 "required": [
@@ -150,13 +150,13 @@
                                     "name": {
                                         "type": "string",
                                         "title": "Input Parameter Name",
-                                        "description": "Name of the input parameter",
+                                        "description": "Name of the input parameter.",
                                         "pattern": "^[a-z][0-9a-z-]*$"
                                     },
                                     "desc": {
                                         "type": "string",
                                         "title": "Input Parameter Description",
-                                        "description": "Description of the input parameter"
+                                        "description": "Description of the input parameter."
                                     },
                                     "spread": {
                                         "type": "boolean",
@@ -182,12 +182,12 @@
                             "minItems": 2,
                             "maxItems": 2,
                             "title": "Inputs-Allocated Operand Bits",
-                            "description": "Specifies bits of the operand allocated for number of inputs. Determines the number of inputs for a computed opcode inputs. Required only for computed (non-constant) inputs"
+                            "description": "Specifies bits of the operand allocated for number of inputs. Determines the number of inputs for a computed opcode inputs. Required only for computed (non-constant) inputs."
                         },
                         "computation": {
                             "type": "string",
                             "title": "Inputs-Allocated Operand Bits Computation",
-                            "description": "Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The \"bits\" keyword is reserved for accessing the exctraced value, example: \"(bits + 1) * 2\". Required only for computed (non-constant) inputs"
+                            "description": "Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The \"bits\" keyword is reserved for accessing the exctraced value, example: \"(bits + 1) * 2\". Required only for computed (non-constant) inputs."
                         }
                     },
                     "required": [
@@ -216,12 +216,12 @@
                             "minItems": 2,
                             "maxItems": 2,
                             "title": "Outputs-Allocated Operand Bits",
-                            "description": "Specifies bits of the operand allocated for number of outputs. Determines the number of outputs for a computed opcode outputs. Required only for computed (non-constant) outputs"
+                            "description": "Specifies bits of the operand allocated for number of outputs. Determines the number of outputs for a computed opcode outputs. Required only for computed (non-constant) outputs."
                         },
                         "computation": {
                             "type": "string",
                             "title": "Outputs-Allocated Operand Bits Computation",
-                            "description": "Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The \"bits\" keyword is reserved for accessing the exctraced value, example: \"(bits + 1) * 2\". Required only for computed (non-constant) outputs"
+                            "description": "Specifies any arithmetical operation that needs to be applied on value of the extracted operand bits. The \"bits\" keyword is reserved for accessing the exctraced value, example: \"(bits + 1) * 2\". Required only for computed (non-constant) outputs."
                         }
                     },
                     "additionalProperties": false

@@ -26,10 +26,10 @@
                     "title": "Contract Git Commit",
                     "pattern": "[a-f0-9]{40}"
                 },
-                "expReceiveingMethods": {
+                "expReceivingMethods": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ExpressionReceiveingMethods"
+                        "$ref": "#/definitions/ExpressionReceivingMethods"
                     },
                     "title": "Contract's Expression Receiving Methods",
                     "description": "Methods of the contract that receive at least one expression (EvaluableConfig) from arguments.",
@@ -41,13 +41,13 @@
                 "desc",
                 "source",
                 "commit",
-                "expReceiveingMethods"
+                "expReceivingMethods"
             ],
             "additionalProperties": false,
             "title": "Rain Contract Metadata",
             "description": "Required info about a contract that receives expression in at least one of its methods."
         },
-        "ExpressionReceiveingMethods": {
+        "ExpressionReceivingMethods": {
             "type": "object",
             "properties": {
                 "name": {
@@ -58,183 +58,27 @@
                     "type": "string",
                     "title": "Method Description"
                 },
-                "args": {
+                "expressions": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/Arguments"
+                        "$ref": "#/definitions/Expression"
                     },
-                    "title": "Method Arguments",
+                    "title": "Method Expressions",
+                    "minItems": 1
+                },
+                "inputs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Input"
+                    },
+                    "title": "Method Inputs",
                     "minItems": 1
                 }
             },
             "required": [
                 "name",
                 "desc",
-                "args"
-            ],
-            "additionalProperties": false
-        },
-        "Arguments": {
-            "anyOf": [
-                {
-                    "$ref": "#/definitions/Bool"
-                },
-                {
-                    "$ref": "#/definitions/Number"
-                },
-                {
-                    "$ref": "#/definitions/String"
-                },
-                {
-                    "$ref": "#/definitions/Tuple"
-                },
-                {
-                    "$ref": "#/definitions/Expression"
-                }
-            ]
-        },
-        "Bool": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "title": "Argument Name"
-                },
-                "desc": {
-                    "type": "string",
-                    "title": "Argument Description"
-                },
-                "path": {
-                    "type": "string",
-                    "title": "Argument Path",
-                    "description": "Argument's path in contract's ABI, relative to parents path."
-                },
-                "type": {
-                    "type": "string",
-                    "const": "boolean",
-                    "title": "Argument Type",
-                    "description": "Determines the type of the argument which can be either of string, nummber, boolean, tuple, array or exp (EvaluableConfig)."
-                }
-            },
-            "required": [
-                "name",
-                "desc",
-                "path",
-                "type"
-            ],
-            "additionalProperties": false
-        },
-        "Number": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "title": "Argument Name"
-                },
-                "desc": {
-                    "type": "string",
-                    "title": "Argument Description"
-                },
-                "path": {
-                    "type": "string",
-                    "title": "Argument Path",
-                    "description": "Argument's path in contract's ABI, relative to parents path."
-                },
-                "type": {
-                    "type": "string",
-                    "const": "number",
-                    "title": "Argument Type",
-                    "description": "Determines the type of the argument which can be either of string, nummber, boolean, tuple, array or exp (EvaluableConfig)."
-                }
-            },
-            "required": [
-                "name",
-                "desc",
-                "path",
-                "type"
-            ],
-            "additionalProperties": false
-        },
-        "String": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "title": "Argument Name"
-                },
-                "desc": {
-                    "type": "string",
-                    "title": "Argument Description"
-                },
-                "path": {
-                    "type": "string",
-                    "title": "Argument Path",
-                    "description": "Argument's path in contract's ABI, relative to parents path."
-                },
-                "type": {
-                    "type": "string",
-                    "const": "string",
-                    "title": "Argument Type",
-                    "description": "Determines the type of the argument which can be either of string, nummber, boolean, tuple, array or exp (EvaluableConfig)."
-                }
-            },
-            "required": [
-                "name",
-                "desc",
-                "path",
-                "type"
-            ],
-            "additionalProperties": false
-        },
-        "Tuple": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "title": "Argument Name"
-                },
-                "desc": {
-                    "type": "string",
-                    "title": "Argument Description"
-                },
-                "path": {
-                    "type": "string",
-                    "title": "Argument Path",
-                    "description": "Argument's path in contract's ABI, relative to parents path."
-                },
-                "type": {
-                    "type": "string",
-                    "const": "tuple",
-                    "title": "Argument Type",
-                    "description": "Determines the type of the argument which can be either of string, nummber, boolean, tuple, array or exp (EvaluableConfig)."
-                },
-                "props": {
-                    "type": "array",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/definitions/Number"
-                            },
-                            {
-                                "$ref": "#/definitions/String"
-                            },
-                            {
-                                "$ref": "#/definitions/Tuple"
-                            },
-                            {
-                                "$ref": "#/definitions/Expression"
-                            }
-                        ]
-                    },
-                    "title": "Tuple Properties"
-                }
-            },
-            "required": [
-                "name",
-                "desc",
-                "path",
-                "type",
-                "props"
+                "expressions"
             ],
             "additionalProperties": false
         },
@@ -243,22 +87,16 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "title": "Argument Name"
+                    "title": "Expression Name"
                 },
                 "desc": {
                     "type": "string",
-                    "title": "Argument Description"
+                    "title": "Expression Description"
                 },
                 "path": {
                     "type": "string",
-                    "title": "Argument Path",
-                    "description": "Argument's path in contract's ABI, relative to parents path."
-                },
-                "type": {
-                    "type": "string",
-                    "const": "exp",
-                    "title": "Argument Type",
-                    "description": "Determines the type of the argument which can be either of string, nummber, boolean, tuple, array or exp (EvaluableConfig)."
+                    "title": "Expression Path",
+                    "description": "Expression's path in contract's ABI."
                 },
                 "contextColumns": {
                     "type": "array",
@@ -282,8 +120,7 @@
             "required": [
                 "name",
                 "desc",
-                "path",
-                "type"
+                "path"
             ],
             "additionalProperties": false
         },
@@ -299,6 +136,12 @@
                     "type": "string",
                     "title": "Context Column Description"
                 },
+                "alias": {
+                    "type": "string",
+                    "title": "Context Column Alias",
+                    "description": "Alias for the context column used in RainLang, follows rainlang valid word pattern.",
+                    "pattern": "^[a-z][a-z0-9]*$"
+                },
                 "cells": {
                     "type": "array",
                     "items": {
@@ -310,7 +153,8 @@
             },
             "required": [
                 "name",
-                "desc"
+                "desc",
+                "alias"
             ],
             "additionalProperties": false
         },
@@ -325,11 +169,42 @@
                 "desc": {
                     "type": "string",
                     "title": "Context Cell Description"
+                },
+                "alias": {
+                    "type": "string",
+                    "title": "Context Cell Alias",
+                    "description": "Alias for the context cell used in RainLang, follows rainlang valid word pattern.",
+                    "pattern": "^[a-z][a-z0-9]*$"
                 }
             },
             "required": [
                 "name",
-                "desc"
+                "desc",
+                "alias"
+            ],
+            "additionalProperties": false
+        },
+        "Input": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Input Name"
+                },
+                "desc": {
+                    "type": "string",
+                    "title": "Input Description"
+                },
+                "path": {
+                    "type": "string",
+                    "title": "Input Path",
+                    "description": "Input's path in contract's ABI."
+                }
+            },
+            "required": [
+                "name",
+                "desc",
+                "path"
             ],
             "additionalProperties": false
         }
