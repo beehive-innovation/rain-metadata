@@ -8,13 +8,18 @@
             "properties": {
                 "name": {
                     "type": "string",
-                    "title": "Contract Name",
-                    "pattern": "^[a-z][0-9a-z-]*$"
+                    "title": "Contract Name"
                 },
                 "desc": {
                     "type": "string",
                     "title": "Contract Description",
                     "description": "A brief description about the contract."
+                },
+                "alias": {
+                    "type": "string",
+                    "title": "Contract Alias",
+                    "description": "Alias of the contract used by RainLang, follows RainLang word pattern.",
+                    "pattern": "^[a-z][a-z0-9]*$"
                 },
                 "source": {
                     "type": "string",
@@ -39,6 +44,7 @@
             "required": [
                 "name",
                 "desc",
+                "alias",
                 "source",
                 "commit",
                 "expReceivingMethods"

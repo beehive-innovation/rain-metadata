@@ -5,7 +5,6 @@
 export type ContractMetadata = {
     /**
      * @title Contract Name
-     * @pattern ^[a-z][0-9a-z-]*$
      */
     name: string;
     /**
@@ -13,6 +12,12 @@ export type ContractMetadata = {
      * @description A brief description about the contract.
      */
     desc: string;
+    /**
+     * @title Contract Alias
+     * @description Alias of the contract used by RainLang, follows RainLang word pattern.
+     * @pattern ^[a-z][a-z0-9]*$
+     */
+    alias: string;
     /**
      * @title Contract Source
      * @description Github repository URL where this contract belongs to.
