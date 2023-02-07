@@ -24,11 +24,6 @@ export type ContractMetadata = {
      */
     source: string;
     /**
-     * @title Contract Git Commit
-     * @pattern [a-f0-9]{40}
-     */
-    commit: string;
-    /**
      * @title Contract Methods
      * @description Methods of the contract that receive at least one expression (EvaluableConfig) from arguments.
      * @minItems 1
