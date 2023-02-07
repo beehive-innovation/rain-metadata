@@ -101,8 +101,10 @@ export type Expression = {
      */
     callerContext?: boolean;
     /**
-     * @title Expression Context Columns
-     * @description Specifies the reserved context columns of this expression.
+     * @title Context Grid Columns
+     * @description Specifies the reserved context grid columns of this expression, context is a 256x256 matrix of unit256.
+     * @minItems 1
+     * @maxItems 256
      */
     contextColumns?: ContextColumn[];
 }
@@ -125,20 +127,15 @@ export type ContextColumn = {
      */
     alias: string;
     /**
-     * @title Opcode
-     * @description Opcode to be assigned to.
-     * @pattern ^[a-z][a-z0-9-]*$
+     * @title Context Column Index
+     * @description Index of this context column grid, this value will be inside <> of associated interpreter's opcode, exxample: columnIndex: 0 -> context-column-opcode<0>.
      */
-    opcode: string;
+    columnIndex: Integer;
     /**
-     * @title Operand
-     * @description Operand to be assigned to, values inside <>.
+     * @title Context Grid Cells
+     * @description Specifies the reserved context grid cells of this expression, context is a 256x256 matrix of unit256.
      * @minItems 1
-     */
-    operand: Integer[];
-    /**
-     * @title Context Column Cells
-     * @description Info about the cells in this context column.
+     * @maxItems 256
      */
     cells?: ContextCell[]
 }
@@ -160,21 +157,14 @@ export type ContextCell = {
      */
     alias: string;
     /**
-     * @title Opcode
-     * @description Opcode to be assigned to.
-     * @pattern ^[a-z][a-z0-9-]*$
+     * @title Context Cell Index
+     * @description Index of this context cell grid, column index value and this value will be inside of <> of associated interpreter's opcode, example: columnIndex: 0, cellIndex: 1 -> context-cell-opcode<0 1>.
      */
-    opcode: string;
-    /**
-     * @title Operand
-     * @description Operand to be assigned to, values inside <>.
-     * @minItems 1
-     */
-    operand: Integer[];
+    cellIndex: Integer;
 }
 
 /**
  * @minimum 0
- * @maximum 65535
+ * @maximum 255
  */
 type Integer = number

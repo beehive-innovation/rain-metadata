@@ -18,21 +18,20 @@ export type OpMeta = {
      * @title Opcode Operand
      * @description Data required in order to calculate and format the operand.
      */
-    operand: 0 | OperandArg;
+    operand: 0 | OperandArgs;
     /**
      * @title Opcode Inputs
-     * @description Data required to specify the inputs the opcode.
+     * @description Data required to specify the inputs of the opcode. 0 for opcodes with no input, for opcodes with constant number of inputs, the length of "parameters" array defines the number of inputs and for opcodes with dynamic number of inputs, "bits" field must be specified which determines this opcode has dynamic inputs and number of inputs will be derived from the operand bits with "computation" field applied if specified.
      */
     inputs: InputMeta;
     /**
      * @title Opcode Outputs
-     * @description Data required to specify the outputs the opcode.
+     * @description Data required to specify the outputs of the opcode. An integer specifies the number of outputs for opcodes with constants number of outputs and for opcodes with dynamic outputs the "bits" field will determine the number of outputs with "computation" field applied if specified.
      */
     outputs: OutputMeta;
     /**
      * @title Opcode Aliases
      * @description Extra word used to identify the opcode.
-     * @pattern ^[a-z][0-9a-z-]*$
      */
     aliases?: StringArray[];
 }
@@ -74,7 +73,7 @@ export type InputMeta = 0 | {
     /**
      * @title Inputs-Allocated Operand Bits Computation
      * @description 
-     * Specifies any arithmetical operation that needs to be applied to value of the extracted operand bits. The "bits" keyword is reserved for accessing the exctraced value, example: "(bits + 1) * 2". Required only for computed (non-constant) inputs.
+     * Specifies any arithmetical operation that will be applied to the value of the extracted operand bits. The "bits" keyword is reserved for accessing the exctraced value, example: "(bits + 1) * 2". Required only for computed (non-constant) inputs.
      */
     computation?: string;
 }
@@ -91,7 +90,7 @@ export type OutputMeta = Integer | {
     /**
      * @title Outputs-Allocated Operand Bits Computation
      * @description 
-     * Specifies any arithmetical operation that needs to be applied to value of the extracted operand bits. The "bits" keyword is reserved for accessing the exctraced value, example: "(bits + 1) * 2". Required only for computed (non-constant) outputs.
+     * Specifies any arithmetical operation that will be applied to the value of the extracted operand bits. The "bits" keyword is reserved for accessing the exctraced value, example: "(bits + 1) * 2". Required only for computed (non-constant) outputs.
      */
     computation?: string;
 }
@@ -100,7 +99,7 @@ export type OutputMeta = Integer | {
 /**
  * @minItems 1
  */
-export type OperandArg = {
+export type OperandArgs = {
     /**
      * @title Allocated Operand Bits
      * @description Specifies the bits to allocate to this operand argument.
@@ -121,13 +120,13 @@ export type OperandArg = {
     /**
      * @title Allocated Operand Bits Computation
      * @description 
-     * Specifies any arithmetical operation that needs to be applied to the value of this operand argument. The "arg" keyword is reserved for accessing the value of this operand argument, example: "(arg + 1) * 2".
+     * Specifies any arithmetical operation that needs to be applied to the value of this operand argument. It will apply to the value before it be validated by the provided range. The "arg" keyword is reserved for accessing the value of this operand argument, example: "(arg + 1) * 2".
      */
     computation?: string;
     /**
      * @title Operand Argument Range
      * @description 
-     * Determines the valid range of the operand argument before any computation applied. For an Operand Argument named "inputs" it defines the valid length of items inside opcode's parens. For example an operand argument can be any range between 1 - 10: [[1, 10]] or an operand argument can only be certain exact number: [[2], [3], [9]], meaning it can only be 2 or 3 or 9.
+     * Determines the valid range of the operand argument after computation applied. For example an operand argument can be any value between range of 1 - 10: [[1, 10]] or an operand argument can only be certain exact values: [[2], [3], [9]], meaning it can only be 2 or 3 or 9.
      */
     validRange?: ([LengthInteger] | [LengthInteger, LengthInteger])[];
 }[]
