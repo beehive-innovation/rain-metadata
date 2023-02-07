@@ -1,0 +1,12 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["*.opmeta.json"],
+      "url": "./schemas/op.meta.schema.json"
+    },
+    {
+      "fileMatch": ["*.meta.json"],
+      "url": "./schemas/contract.meta.schema.json"
+    }
+  ]
+}
