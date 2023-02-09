@@ -18,7 +18,7 @@ export type OpMeta = {
      * @title Opcode Operand
      * @description Data required in order to calculate and format the operand.
      */
-    operand: 0 | OperandArgs;
+    operand: OperandMeta;
     /**
      * @title Opcode Inputs
      * @description Data required to specify the inputs of the opcode. 0 for opcodes with no input, for opcodes with constant number of inputs, the length of "parameters" array defines the number of inputs and for opcodes with dynamic number of inputs, "bits" field must be specified which determines this opcode has dynamic inputs and number of inputs will be derived from the operand bits with "computation" field applied if specified.
@@ -38,7 +38,9 @@ export type OpMeta = {
 
 // Data type of opcode's inputs that determines the number of  
 // inputs an opcode has and provide information about them
-export type InputMeta = 0 | {
+export type InputMeta = 0 | InputArgs
+
+export type InputArgs = {
     /**
      * @title Parameters
      * @description 
@@ -80,13 +82,15 @@ export type InputMeta = 0 | {
 
 // Data type of opcode's outputs that determines the number of  
 // outputs an opcode has and provide information about them
-export type OutputMeta = Integer | {
+export type OutputMeta = Integer | ComputedOutput
+
+export type ComputedOutput = {
     /**
      * @title Outputs-Allocated Operand Bits
      * @description 
      * Specifies bits of the operand allocated for number of outputs. Determines the number of outputs for a computed opcode outputs. Required only for computed (non-constant) outputs.
      */
-    bits?: [BitInteger, BitInteger];
+    bits: [BitInteger, BitInteger];
     /**
      * @title Outputs-Allocated Operand Bits Computation
      * @description 
@@ -96,6 +100,8 @@ export type OutputMeta = Integer | {
 }
 
 // Data type of operand arguments, used only for non-constant operands
+export type OperandMeta = 0 | OperandArgs 
+
 /**
  * @minItems 1
  */
