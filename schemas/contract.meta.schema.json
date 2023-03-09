@@ -10,6 +10,11 @@
                     "type": "string",
                     "title": "Contract Name"
                 },
+                "abiName": {
+                    "type": "string",
+                    "title": "Contract ABI name",
+                    "description": "Name of the contract corresponding to `contractName` feild in the abi"
+                  },
                 "desc": {
                     "type": "string",
                     "title": "Contract Description",
@@ -54,6 +59,11 @@
                     "type": "string",
                     "title": "Method Name"
                 },
+                "abiName": {
+                    "type": "string",
+                    "title": "Method ABI Name",
+                    "description": "Name of the method corresponding to `name` feild in the abi"
+                  },
                 "desc": {
                     "type": "string",
                     "title": "Method Description"
@@ -89,6 +99,11 @@
                     "type": "string",
                     "title": "Input Name"
                 },
+                "abiName": {
+                    "type": "string",
+                    "title": "Input ABI Name",
+                    "description": "Name of the input corresponding to `name` feild in the abi"
+                  },
                 "desc": {
                     "type": "string",
                     "title": "Input Description"
@@ -113,6 +128,11 @@
                     "type": "string",
                     "title": "Expression Name"
                 },
+                "abiName": {
+                    "type": "string",
+                    "title": "Expression ABI Name",
+                    "description": "Name of the expression corresponding to `name` feild in the abi"
+                  },
                 "desc": {
                     "type": "string",
                     "title": "Expression Description"
